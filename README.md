@@ -1,19 +1,102 @@
-Project Description:
+🚀 DQN-Driven Intelligent RAG Chatbot with Secure Authentication
+📌 Project Overview
 
-A fully featured authentication system that includes user registration, login, password update, forgot password, OTP verification, and secure logout. The backend is built with Django, the frontend uses Next.js 14, and PostgreSQL is used as the database. The system follows a robust and secure authentication flow utilizing both access and refresh tokens.
+This project presents an AI-powered chatbot system that intelligently decides when to retrieve external information and when to generate responses, using Deep Reinforcement Learning (DQN).
 
-Here is the short summary of project:
+Alongside the AI system, the project includes a fully secure, production-ready authentication module built with modern web technologies.
 
-Deep Q-Network (DQN) / neural Q.
-This project keeps the entire foundation and upgrades the three weak points. The RL brain is now a small neural network (DQN) that sees a richer 6-number description of each situation and has a separate "target network" to keep training stable. On first boot it pre-trains on 800 synthetic examples so it already knows the basics before seeing real users. The reward signal is now real — a new EvaluatorAgent scores every answer on factuality, coverage, hallucination risk, and conciseness using one LLM call, and that composite score drives the RL update instead of the old heuristic. And parallel execution actually works now: when the planner says "use both RAG and web search," they genuinely run at the same time via asyncio.gather()
+The goal is to reduce API costs, improve response accuracy, and ensure secure user interaction in real-world deployments.
 
-About This Project:
+🧠 Core Idea
 
-This project focuses on building AI-powered chatbots capable of making intelligent decisions—determining when to retrieve additional information and when to generate responses. This approach helps reduce API costs while significantly improving response accuracy.
+Traditional Retrieval-Augmented Generation (RAG) systems follow static pipelines.
+This project introduces a learning-based approach, where the chatbot dynamically decides:
 
-Say:
+🔍 When to retrieve additional data (RAG / Web Search)
+💬 When to directly generate a response
 
-I build AI chatbots that intelligently decide when to search more data and when to answer, reducing API costs and improving accuracy.
+👉 This decision is optimized using Deep Q-Network (DQN), enabling smarter and more cost-efficient AI behavior.
+
+⚙️ Key Features
+🤖 AI / Reinforcement Learning
+Deep Q-Network (DQN) for decision-making
+State representation using a 6-dimensional feature vector
+Target network for stable training
+Pre-training on 800 synthetic samples for faster convergence
+Real reward signal via EvaluatorAgent:
+Factuality
+Coverage
+Hallucination Risk
+Conciseness
+
+🧩 Multi-Agent Architecture
+Planner Agent → decides action strategy
+RAG Agent → retrieves knowledge from documents
+Search Agent → fetches external/web data
+Evaluator Agent → scores response quality
+
+⚡ Supports true parallel execution using asyncio.gather()
+→ RAG and Search can run simultaneously when required
+
+🔐 Authentication System (Full-Stack)
+
+Built with secure and scalable technologies:
+
+Backend: Django
+Frontend: Next.js 14
+Database: PostgreSQL
+Features:
+User Registration & Login
+Password Update & Reset (Forgot Password)
+OTP Verification
+Secure Logout
+JWT-based Authentication:
+Access Tokens
+Refresh Tokens
+🏗️ System Architecture
+User → Frontend (Next.js)
+     → Backend (Django API)
+         → Auth System (JWT + OTP)
+         → AI Orchestrator (Multi-Agent System)
+             → Planner → (RAG + Search in Parallel)
+             → Evaluator → RL Update (DQN)
+🎯 Objectives
+Build intelligent AI chatbots with adaptive behavior
+Reduce unnecessary API calls → lower cost
+Improve response reliability → higher accuracy
+Enable secure, real-world deployment
+
+💡 Key Contributions
+✅ RL-based decision-making for RAG systems
+✅ Dynamic retrieval vs generation strategy
+✅ Multi-agent orchestration with parallel execution
+✅ Real-time reward modeling using LLM evaluation
+✅ Integration with secure full-stack authentication
+
+🧪 How It Works
+User sends a query
+Planner Agent analyzes the situation
+DQN decides:
+Retrieve data OR generate directly
+If retrieval:
+RAG + Search run in parallel
+Response is generated
+Evaluator Agent scores the output
+DQN updates policy based on reward
+
+🗣️ One-Line Summary
+I build AI chatbots that intelligently decide when to search for information and when to respond directly—reducing API costs while improving accuracy.
+
+🚀 Future Improvements
+Fine-tuning DQN with real user interaction data
+Adding memory-based personalization
+Expanding multi-agent collaboration
+Deploying at scale with distributed systems
+
+📄 License
+This project is for research and educational purposes.
+
+
 
 
 -------------------------------------------
